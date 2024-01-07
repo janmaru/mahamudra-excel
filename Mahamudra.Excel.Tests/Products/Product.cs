@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Mahamudra.Excel.Common;
 
 namespace Mahamudra.Excel.Tests.Products;
 
@@ -7,23 +8,23 @@ namespace Mahamudra.Excel.Tests.Products;
 public class Product
 {
     [Column("product_id")]
-    [HeaderAttribute("Product Id") ]
+    [HeaderAttribute("Product Id", Order = 2, Style = XCellStyle.Wrapper)]
     [Required]
     public int Id { get; set; }
 
     [Column("product_name")]
-    [HeaderAttribute("Product Name")]
+    [HeaderAttribute("Product Name", Order = 1, Style = XCellStyle.None)]
     [Required(AllowEmptyStrings = false)]
     public string? Name { get; set; }
 
     [Column("brand_id")]
-    [HeaderAttribute("Brand Id")]
+    [HeaderAttribute("Brand Id", Order = 3, Style = XCellStyle.Wrapper)]
     [Required]
     public int BrandId { get; set; }
 
     [Column("category_id")]
     [Required]
-    [HeaderAttribute("Category Id")]
+    [HeaderAttribute("Category Id", Order = 4, Style = XCellStyle.Wrapper)]
     public int CategoryId { get; set; }
 
     [Column("model_year")]
@@ -31,7 +32,7 @@ public class Product
     public short ModelYear { get; set; }
 
     [Column("list_price")]
-    [HeaderAttribute("ListPrice")]
+    [HeaderAttribute("ListPrice", Order = 5, Style = XCellStyle.Wrapper)]
     [Required]
     public decimal ListPrice { get; set; } 
 }

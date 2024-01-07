@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Spreadsheet; 
 
 namespace Mahamudra.Excel.Common
 {
@@ -112,7 +112,7 @@ namespace Mahamudra.Excel.Common
                         {
                             DataType = CellValues.String,
                             CellValue = new CellValue(column.Caption),
-                            StyleIndex = Convert.ToUInt32(1)
+                            StyleIndex = Convert.ToUInt32(column.DefaultValue), 
                         };
                         headerRow.AppendChild(cell);
                     } 
@@ -128,8 +128,7 @@ namespace Mahamudra.Excel.Common
                             var cell = new Cell
                             {
                                 DataType = cellType,
-                                CellValue = new CellValue((dynamic)value),
-                                StyleIndex = Convert.ToUInt32(1) 
+                                CellValue = new CellValue((dynamic)value) 
                             };
                             newRow.AppendChild(cell);
                         }

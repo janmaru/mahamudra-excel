@@ -1,4 +1,5 @@
 ﻿using System;
+using Mahamudra.Excel.Common;
 
 namespace Mahamudra.Excel
 {
@@ -15,5 +16,7 @@ namespace Mahamudra.Excel
         public string Name { get; set; }
         public bool ReadOnly { get; internal set; } 
         public Type Type { get; set; }
+        public Int16 Order { get; set; } = 0;
+        public XCellStyle Style { get; set; } = XCellStyle.None;
     }
 }

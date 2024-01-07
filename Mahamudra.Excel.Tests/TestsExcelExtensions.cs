@@ -81,6 +81,8 @@ public class Tests
         using var streamFile = dataSet.ToExcel(); 
         var array = streamFile.ToArray();
 
-        Assert.That(array, Is.Not.Null); 
+        Assert.That(array, Is.Not.Null);
+
+        File.WriteAllBytes($"D:\\{new Random().Next()}.xlsx", array);
     }
 }

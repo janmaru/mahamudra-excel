@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System;
+using System.Linq;
 
 namespace Mahamudra.Excel.Common
 {
@@ -21,7 +22,7 @@ namespace Mahamudra.Excel.Common
                     list.Add(customAttribute);
                 }
             }
-            return list;
+            return list.OrderBy(x=>x.Order).ToList();
         }
 
         internal static (DataTable, List<HeaderAttribute>) ToTable<T>()
@@ -35,7 +36,8 @@ namespace Mahamudra.Excel.Common
                     DataType = hh.Type,
                     ColumnName = hh.Name,
                     Caption = hh.Caption,
-                    ReadOnly = hh.ReadOnly
+                    ReadOnly = hh.ReadOnly,
+                    DefaultValue = hh.Style
                 };
                 table.Columns.Add(column);
             }
