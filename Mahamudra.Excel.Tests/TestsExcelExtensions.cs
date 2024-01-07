@@ -1,3 +1,6 @@
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml;
 using Mahamudra.Excel.Common;
 using Mahamudra.Excel.Tests.Common;
 using Mahamudra.Excel.Tests.Products;
@@ -74,13 +77,34 @@ public class Tests
                  ListPrice = CustomExtensions.GetRandomDecimal(),
                  ModelYear =(short) CustomExtensions.GetRandomInteger(DateTime.Now.Year),
                  Name = CustomExtensions.GetRandomString(),
+                 Date = DateTime.Now
+            },
+           new()
+            {
+                 BrandId = CustomExtensions.GetRandomInteger(),
+                 CategoryId = CustomExtensions.GetRandomInteger(),
+                 Id =  CustomExtensions.GetRandomInteger(),
+                 ListPrice = CustomExtensions.GetRandomDecimal(),
+                 ModelYear =(short) CustomExtensions.GetRandomInteger(DateTime.Now.Year),
+                 Name = CustomExtensions.GetRandomString(),
+                 Date = DateTime.Now
+            },
+           new()
+            {
+                 BrandId = CustomExtensions.GetRandomInteger(),
+                 CategoryId = CustomExtensions.GetRandomInteger(),
+                 Id =  CustomExtensions.GetRandomInteger(),
+                 ListPrice = CustomExtensions.GetRandomDecimal(),
+                 ModelYear =(short) CustomExtensions.GetRandomInteger(DateTime.Now.Year),
+                 Name = CustomExtensions.GetRandomString(),
+                 Date = DateTime.Now
             }
         };
 
         var dataSet = expectedListOfProducts.FillOneSheet();
-        using var streamFile = dataSet.ToExcel(); 
+        using var streamFile = dataSet.ToExcel();
         var array = streamFile.ToArray();
 
-        Assert.That(array, Is.Not.Null);
-    }
-}
+        Assert.That(array, Is.Not.Null); 
+    } 
+} 

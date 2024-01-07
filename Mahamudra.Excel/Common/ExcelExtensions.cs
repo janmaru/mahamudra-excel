@@ -5,14 +5,14 @@ using System.IO;
 using System.Linq;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Spreadsheet; 
 
 namespace Mahamudra.Excel.Common
 {
     public static class ExcelExtensions
-    { 
+    {
         internal static ForegroundColor TranslateForeground(System.Drawing.Color fillColor)
-        { 
+        {
             return new ForegroundColor()
             {
                 Rgb = new HexBinaryValue()
@@ -146,7 +146,7 @@ namespace Mahamudra.Excel.Common
             });
             cellFormats.Append(new CellFormat()
             {
-                Alignment = new Alignment() { WrapText = true}
+                Alignment = new Alignment() { WrapText = true }
             });
             cellFormats.Append(new CellFormat   // CellFormat index 2
             {
@@ -183,7 +183,7 @@ namespace Mahamudra.Excel.Common
                 BorderId = 0,
                 FormatId = 0,
                 ApplyNumberFormat = BooleanValue.FromBoolean(true)
-            }); 
+            });
             cellFormats.Append(new CellFormat   // Cell format index 6
             {
                 NumberFormatId = 10,    // 10  0.00 %,
@@ -202,8 +202,8 @@ namespace Mahamudra.Excel.Common
                 FormatId = 0,
                 ApplyNumberFormat = BooleanValue.FromBoolean(true)
             });
-            cellFormats.Append(new CellFormat
-            { 
+            cellFormats.Append(new CellFormat  // Cell format header
+            {
                 NumberFormatId = 49,
                 FontId = 1,
                 FillId = 0,
@@ -254,6 +254,8 @@ namespace Mahamudra.Excel.Common
 
                 foreach (DataTable table in ds.Tables)
                 {
+                    int lp = 1;
+
                     var sheetPart = workbook.WorkbookPart.AddNewPart<WorksheetPart>();
                     var sheetData = new SheetData();
                     sheetPart.Worksheet = new Worksheet(sheetData);
@@ -269,12 +271,29 @@ namespace Mahamudra.Excel.Common
                     sheets.Append(sheet);
 
                     var headerRow = new Row();
-
-                    var columns = new List<string>();
+                    var columns = new Dictionary<string, XCellStyle>();
+                    var clmns = new Columns();
+                    int index = 0;
                     foreach (DataColumn column in table.Columns)
                     {
-                        columns.Add(column.ColumnName);
+                        columns.Add(column.ColumnName, (XCellStyle)column.ExtendedProperties["Style"]);
 
+                        var cln = new Column
+                        {
+                            Min = Convert.ToUInt32(index),
+                            Max = Convert.ToUInt32(index),
+                            Width = 250,
+                            BestFit = true,
+                            Style = Convert.ToUInt32(0),
+                        }; 
+                        clmns.Append(cln);
+                        index++;
+                    }
+                    sheetData.AppendChild(clmns);
+
+                    var freezeRow = lp; 
+                    foreach (DataColumn column in table.Columns)
+                    {
                         var cell = new Cell
                         {
                             DataType = CellValues.String,
@@ -282,20 +301,20 @@ namespace Mahamudra.Excel.Common
                             StyleIndex = Convert.ToUInt32(XCellStyle.Header),
                         };
                         headerRow.AppendChild(cell);
-                    }
-
-                    sheetData.AppendChild(headerRow);
+                    } 
+                    sheetData.AppendChild(headerRow); 
 
                     foreach (DataRow dsrow in table.Rows)
                     {
                         var newRow = new Row();
                         foreach (var col in columns)
-                        {
-                            var (cellType, value, type) = TypeFinder.Get(dsrow[col]!);
+                        { 
+                            var (cellType, value, type) = TypeFinder.Get(dsrow[col.Key]!);
                             var cell = new Cell
                             {
                                 DataType = cellType,
-                                CellValue = new CellValue((dynamic)value)
+                                CellValue = new CellValue((dynamic)value),
+                                StyleIndex = Convert.ToUInt32(col.Value),
                             };
                             newRow.AppendChild(cell);
                         }

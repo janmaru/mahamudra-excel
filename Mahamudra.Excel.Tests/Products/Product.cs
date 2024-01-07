@@ -34,5 +34,10 @@ public class Product
     [Column("list_price")]
     [HeaderAttribute("ListPrice", Order = 5, Style = XCellStyle.Wrapper)]
     [Required]
-    public decimal ListPrice { get; set; } 
+    public decimal ListPrice { get; set; }
+
+    [Column("Date")]
+    [HeaderAttribute("Date Time", Order = 6, Style = XCellStyle.Wrapper)]
+    [Required]
+    public DateTime Date { get; set; }
 }

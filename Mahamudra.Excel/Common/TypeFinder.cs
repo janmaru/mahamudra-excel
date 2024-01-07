@@ -26,7 +26,7 @@ namespace Mahamudra.Excel.Common
             var check = _matches.TryGetValue(type, out var cellValues);
             if (check)
                 return (cellValues, value, type);
-            return (CellValues.String, value, type);
+            return (CellValues.String, default(T), typeof(string))!;
         }
     }
 }

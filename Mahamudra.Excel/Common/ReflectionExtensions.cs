@@ -22,7 +22,7 @@ namespace Mahamudra.Excel.Common
                     list.Add(customAttribute);
                 }
             }
-            return list.OrderBy(x=>x.Order).ToList();
+            return list.OrderBy(x => x.Order).ToList();
         }
 
         internal static (DataTable, List<HeaderAttribute>) ToTable<T>()
@@ -36,9 +36,9 @@ namespace Mahamudra.Excel.Common
                     DataType = hh.Type,
                     ColumnName = hh.Name,
                     Caption = hh.Caption,
-                    ReadOnly = hh.ReadOnly,
-                    DefaultValue = hh.Style
+                    ReadOnly = hh.ReadOnly
                 };
+                column.ExtendedProperties.Add("Style", hh.Style);
                 table.Columns.Add(column);
             }
             return (table, headers);
@@ -69,4 +69,4 @@ namespace Mahamudra.Excel.Common
             return ds;
         }
     }
-} 
+}
