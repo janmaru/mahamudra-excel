@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mahamudra.Excel", "Mahamudra.Excel\Mahamudra.Excel.csproj", "{6973A4FB-1D0C-4A1E-AE4A-D6FD3C1FAB75}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mahamudra.Excel.Tests", "Mahamudra.Excel.Tests\Mahamudra.Excel.Tests.csproj", "{8A887C30-CD33-4BCA-8DE5-F11E7A976B60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementi di soluzione", "Elementi di soluzione", "{E273C862-2A2C-4CAF-8AF9-ABA0811D6938}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6973A4FB-1D0C-4A1E-AE4A-D6FD3C1FAB75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6973A4FB-1D0C-4A1E-AE4A-D6FD3C1FAB75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6973A4FB-1D0C-4A1E-AE4A-D6FD3C1FAB75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6973A4FB-1D0C-4A1E-AE4A-D6FD3C1FAB75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A887C30-CD33-4BCA-8DE5-F11E7A976B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A887C30-CD33-4BCA-8DE5-F11E7A976B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A887C30-CD33-4BCA-8DE5-F11E7A976B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A887C30-CD33-4BCA-8DE5-F11E7A976B60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1889EBD0-1D8F-45DF-84B3-C067635290AA}
+	EndGlobalSection
+EndGlobal
