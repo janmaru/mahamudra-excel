@@ -141,6 +141,26 @@ var dataTable = stream.ReadExcel();
 - `XCellStyle.Wrapper` - Text wrapping enabled
 - `XCellStyle.Header` - Header cell formatting
 
+## Benchmarks
+
+Performance benchmarks using BenchmarkDotNet (.NET 9.0):
+
+| Rows | Mean Time | Memory Allocated | Memory/Row |
+|------|-----------|------------------|------------|
+| 50,000 | 1.70 s | ~280 MB | ~5.6 KB |
+| 100,000 | 3.52 s | ~559 MB | ~5.6 KB |
+| 200,000 | ~6.8 s | ~1.1 GB | ~5.6 KB |
+
+**File Size Estimation:**
+- ~50 MB file: 100-150k rows
+- ~100 MB file: 200-300k rows
+
+### Running Benchmarks
+
+```shell
+dotnet run -c Release --project Mahamudra.Excel.Benchmarks
+```
+
 ## License
 
 MIT

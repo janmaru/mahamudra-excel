@@ -22,9 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="temp\dummy.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="temp\read_test.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

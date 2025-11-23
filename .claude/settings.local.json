@@ -5,7 +5,10 @@
       "Bash(dotnet test:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nRefactor to Clean Architecture with DDD and SOLID principles\n\n- Restructure project with Domain/Abstractions/Infrastructure/Extensions layers\n- Add IExcelWriter and IExcelReader interfaces for dependency injection\n- Refactor HeaderAttribute with validation and sealed class\n- Add XML documentation for all public APIs\n- Add guard clauses and input validation\n- Apply encapsulation patterns (private setters, readonly collections)\n- Update README with comprehensive documentation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(dotnet add:*)",
+      "Bash(dotnet add reference:*)",
+      "Bash(dotnet run:*)"
     ],
     "deny": [],
     "ask": []
