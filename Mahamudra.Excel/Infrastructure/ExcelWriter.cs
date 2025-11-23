@@ -103,11 +103,33 @@ namespace Mahamudra.Excel.Infrastructure
                         foreach (var col in columns)
                         {
                             var (cellType, value, type) = CellTypeMapper.GetCellType(dsrow[col.Key]!);
+                            CellValue? cellValue = null;
+                            var cellValues = cellType;
+                            var styleIndex = Convert.ToUInt32(col.Value);
+
+                            if (value == null)
+                                cellValue = new CellValue(string.Empty);
+                            else if (type == typeof(long))
+                                cellValue = new CellValue(Convert.ToDecimal(value));
+                            else if (type == typeof(string) && IsValidDecimal(value))
+                            {
+                                cellValues = CellValues.Number;
+                                cellValue = new CellValue(Convert.ToDecimal(value));
+                            }
+                            else if (type == typeof(DateTime))
+                            {
+                                cellValues = CellValues.Date;
+                                cellValue = new CellValue(((DateTime)value).ToString("yyyy-MM-ddTHH:mm:ss"));
+                                styleIndex = 2;
+                            }
+                            else
+                                cellValue = new CellValue((dynamic)value);
+
                             var cell = new Cell
                             {
-                                DataType = cellType,
-                                CellValue = type == typeof(long) ? new CellValue(Convert.ToDecimal(value)) : new CellValue((dynamic)value),
-                                StyleIndex = Convert.ToUInt32(col.Value),
+                                DataType = cellValues,
+                                CellValue = cellValue,
+                                StyleIndex = styleIndex,
                             };
                             newRow.AppendChild(cell);
                         }
@@ -117,6 +139,23 @@ namespace Mahamudra.Excel.Infrastructure
             }
             memoryStream.Seek(0, SeekOrigin.Begin);
             return memoryStream;
+        }
+
+        private static bool IsValidDecimal(object value)
+        {
+            var inputStr = value?.ToString();
+            if (string.IsNullOrEmpty(inputStr))
+                return false;
+
+            // Exclude integers
+            if (long.TryParse(inputStr, out _))
+                return false;
+
+            // Exclude leading zeros (like "0123")
+            if (inputStr.Length > 1 && inputStr.StartsWith("0") && !inputStr.StartsWith("0."))
+                return false;
+
+            return decimal.TryParse(inputStr, out _);
         }
     }
 }

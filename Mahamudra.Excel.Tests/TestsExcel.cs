@@ -99,6 +99,51 @@ public class Tests
     }
 
     [Test]
+    public void FillOneSheet_WithCustomTableName_ShouldUseCustomName()
+    {
+        var products = new List<Product>()
+        {
+            new()
+            {
+                BrandId = CustomExtensions.GetRandomInteger(),
+                CategoryId = CustomExtensions.GetRandomInteger(),
+                Id = CustomExtensions.GetRandomInteger(),
+                ListPrice = CustomExtensions.GetRandomDecimal(),
+                ModelYear = (short)CustomExtensions.GetRandomInteger(DateTime.Now.Year),
+                Name = CustomExtensions.GetRandomString(),
+                Date = DateTime.Now
+            }
+        };
+
+        var customName = "MyCustomSheet";
+        var dataSet = products.FillOneSheet(customName);
+
+        Assert.That(dataSet.Tables[0].TableName, Is.EqualTo(customName));
+    }
+
+    [Test]
+    public void FillOneSheet_WithoutTableName_ShouldUseTypeName()
+    {
+        var products = new List<Product>()
+        {
+            new()
+            {
+                BrandId = CustomExtensions.GetRandomInteger(),
+                CategoryId = CustomExtensions.GetRandomInteger(),
+                Id = CustomExtensions.GetRandomInteger(),
+                ListPrice = CustomExtensions.GetRandomDecimal(),
+                ModelYear = (short)CustomExtensions.GetRandomInteger(DateTime.Now.Year),
+                Name = CustomExtensions.GetRandomString(),
+                Date = DateTime.Now
+            }
+        };
+
+        var dataSet = products.FillOneSheet();
+
+        Assert.That(dataSet.Tables[0].TableName, Is.EqualTo(nameof(Product)));
+    }
+
+    [Test]
     public void ToExcel_ShoulCreateExcelFile_ShouldSucceed()
     {
         var expectedListOfProducts = new List<Product>()

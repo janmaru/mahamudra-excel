@@ -40,14 +40,15 @@ namespace Mahamudra.Excel.Extensions
         /// </summary>
         /// <typeparam name="T">The type of items in the collection.</typeparam>
         /// <param name="data">The collection to convert.</param>
+        /// <param name="tableName">Optional name for the sheet/table.</param>
         /// <returns>A DataSet containing the data.</returns>
-        public static DataSet FillOneSheet<T>(this IEnumerable<T> data)
+        public static DataSet FillOneSheet<T>(this IEnumerable<T> data, string? tableName = null)
         {
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
 
             var dataSet = new DataSet();
-            var (table, headers, _) = CreateTable<T>();
+            var (table, headers, _) = CreateTable<T>(tableName);
 
             foreach (var item in data)
             {
@@ -102,10 +103,10 @@ namespace Mahamudra.Excel.Extensions
             return (table, numbersOfChars);
         }
 
-        internal static (DataTable, List<HeaderAttribute>, Dictionary<int, int?>) CreateTable<T>()
+        internal static (DataTable, List<HeaderAttribute>, Dictionary<int, int?>) CreateTable<T>(string? tableName = null)
         {
             var headers = GetHeaders<T>();
-            var table = new DataTable(typeof(T).Name);
+            var table = new DataTable(tableName ?? typeof(T).Name);
             var numbersOfChars = new Dictionary<int, int?>();
             var columnIndex = 0;
 
