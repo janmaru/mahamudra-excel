@@ -1,9 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>8.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Mahamudra.Excel</RootNamespace>
+		<AssemblyName>Mahamudra.Excel</AssemblyName>
+		<Version>1.0.0</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>marujan</Authors>
+		<Description>A lightweight .NET library for reading and writing Excel files (.xlsx) using attribute-based column mapping.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/janmaru/mahamudra-excel</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/janmaru/mahamudra-excel</PackageProjectUrl>
+		<PackageTags>excel;xlsx;openxml;export;import</PackageTags>
+		<PackageReleaseNotes>Initial release with .NET Standard 2.1</PackageReleaseNotes>
+		<IsPackable>true</IsPackable>
+		<PackageId>Mahamudra.Excel</PackageId>
+		<Product>Mahamudra.Excel</Product>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
+		<PackageReference Include="GitVersion.MsBuild" Version="6.5.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	</ItemGroup>
 	<ItemGroup>
@@ -11,4 +31,11 @@
 			<_Parameter1>Mahamudra.Excel.Tests</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
+    <ItemGroup>
+        <None Include="lotus-flower.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>
