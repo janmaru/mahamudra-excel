@@ -53,7 +53,12 @@ namespace Mahamudra.Excel.Extensions
             {
                 var row = table.NewRow();
                 foreach (var header in headers)
-                    row[header.Name!] = item!.GetType().GetProperty(header.Name!)!.GetValue(item, null);
+                {
+                    var value = item!.GetType().GetProperty(header.Name!)!.GetValue(item, null);
+                    row[header.Name!] = (value == null || (value is string s && string.IsNullOrEmpty(s)))
+                        ? DBNull.Value
+                        : value;
+                }
 
                 table.Rows.Add(row);
             }

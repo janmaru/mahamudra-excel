@@ -31,7 +31,7 @@ namespace Mahamudra.Excel.Domain
         /// <returns>A tuple containing the cell type, value, and .NET type.</returns>
         public static (CellValues CellType, T Value, Type Type) GetCellType<T>(T value)
         {
-            if (value == null)
+            if (value == null || value is DBNull)
                 return (CellValues.String, default!, typeof(string));
 
             var type = value.GetType();

@@ -65,6 +65,40 @@ public class Tests
     }
 
     [Test]
+    public void FillOneSheet_NullAndEmptyStrings_ShouldConvertToDBNull()
+    {
+        var products = new List<Product>()
+        {
+            new()
+            {
+                BrandId = CustomExtensions.GetRandomInteger(),
+                CategoryId = CustomExtensions.GetRandomInteger(),
+                Id = CustomExtensions.GetRandomInteger(),
+                ListPrice = CustomExtensions.GetRandomDecimal(),
+                ModelYear = (short)CustomExtensions.GetRandomInteger(DateTime.Now.Year),
+                Name = null,
+                Date = DateTime.Now
+            },
+            new()
+            {
+                BrandId = CustomExtensions.GetRandomInteger(),
+                CategoryId = CustomExtensions.GetRandomInteger(),
+                Id = CustomExtensions.GetRandomInteger(),
+                ListPrice = CustomExtensions.GetRandomDecimal(),
+                ModelYear = (short)CustomExtensions.GetRandomInteger(DateTime.Now.Year),
+                Name = "",
+                Date = DateTime.Now
+            }
+        };
+
+        var table = products.FillOneSheet().Tables[0];
+
+        Assert.That(table.Rows, Has.Count.EqualTo(2));
+        Assert.That(table.Rows[0][nameof(Product.Name)], Is.EqualTo(DBNull.Value));
+        Assert.That(table.Rows[1][nameof(Product.Name)], Is.EqualTo(DBNull.Value));
+    }
+
+    [Test]
     public void ToExcel_ShoulCreateExcelFile_ShouldSucceed()
     {
         var expectedListOfProducts = new List<Product>()
