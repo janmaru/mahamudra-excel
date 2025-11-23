@@ -10,7 +10,8 @@
 		<Authors>marujan</Authors>
 		<Description>A lightweight .NET library for reading and writing Excel files (.xlsx) using attribute-based column mapping.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<RepositoryUrl>https://github.com/janmaru/mahamudra-excel</RepositoryUrl>
+        <PackageIcon>lotus-flower.png</PackageIcon>
+        <RepositoryUrl>https://github.com/janmaru/mahamudra-excel</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/janmaru/mahamudra-excel</PackageProjectUrl>
 		<PackageTags>excel;xlsx;openxml;export;import</PackageTags>
 		<PackageReleaseNotes>Initial release with .NET Standard 2.1</PackageReleaseNotes>
