@@ -1,5 +1,8 @@
 # Mahamudra.Excel
 
+[![NuGet](https://img.shields.io/nuget/v/Mahamudra.Excel.svg)](https://www.nuget.org/packages/Mahamudra.Excel)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Mahamudra.Excel.svg)](https://www.nuget.org/packages/Mahamudra.Excel)
+
 A lightweight .NET library for reading and writing Excel files (.xlsx) using attribute-based column mapping.
 
 ## Features
@@ -17,7 +20,17 @@ A lightweight .NET library for reading and writing Excel files (.xlsx) using att
 
 ## Installation
 
-Add a reference to the `Mahamudra.Excel` project or build and reference the DLL.
+Install via NuGet:
+
+```shell
+dotnet add package Mahamudra.Excel
+```
+
+Or via Package Manager:
+
+```shell
+Install-Package Mahamudra.Excel
+```
 
 ## Quick Start
 
